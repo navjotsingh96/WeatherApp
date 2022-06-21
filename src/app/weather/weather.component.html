@@ -1,0 +1,11 @@
+<form (submit)="http.onSubmit()">
+
+    <input type="text" [(ngModel)]="http.searchCity" name="searchCity">
+    <button (click)="http.try()">Try</button>
+</form>
+
+<div *ngFor="let weather of this.app.weather">
+    <h1> {{weather.name}}</h1>
+    <span>{{weather.coord.lat}}</span>
+
+</div>
