@@ -4,7 +4,7 @@
     <button (click)="http.try()">Try</button>
 </form>
 
-<div *ngFor="let weather of this.app.weather">
+<div *ngFor="let weather of this.app.Currentweather">
     <h1> {{weather.name}}</h1>
     <span>{{weather.coord.lat}}</span>
 

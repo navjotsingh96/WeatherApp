@@ -17,7 +17,7 @@ export class WeatherComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let loadedInfo = this.app.weather;
+    let loadedInfo = this.app.Currentweather;
     console.log('from Weathercomopnet', loadedInfo);
     const unixTime = 1210981217;
     const date = new Date(unixTime * 1000);

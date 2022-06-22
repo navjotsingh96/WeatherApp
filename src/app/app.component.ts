@@ -1,6 +1,7 @@
 
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
+import { data } from './bodyData';
 import { HttpServiceService } from './http-service.service';
 import { WeatherComponent } from './weather/weather.component';
 
@@ -11,7 +12,7 @@ import { WeatherComponent } from './weather/weather.component';
 })
 export class AppComponent {
   title = 'Weather-App';
-  public weather: any = [];
+  Currentweather =[];
 
 
   constructor(private httpService: HttpServiceService) { }
@@ -20,15 +21,12 @@ export class AppComponent {
   ngOnInit() {
     this.httpService
       .getPosts()
-      .subscribe((respone) => {
-        this.weather.push(respone.body);
-        console.log(respone);
-        (error: any) => {
-          console.log(error);
-        }
+      .subscribe((body) => {
+        this.Currentweather.push(body) ;
+        console.log(body);
+        console.log(this.Currentweather);
+
       })
- console.log(this.weather);
- 
-      
-    };
-  }
+    console.log(this.Currentweather);
+  };
+}
