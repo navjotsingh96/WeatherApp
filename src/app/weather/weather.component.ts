@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AppComponent } from '../app.component';
+import { Component, Input, OnInit } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
+
 import { HttpServiceService } from '../http-service.service';
 
 
@@ -9,20 +10,43 @@ import { HttpServiceService } from '../http-service.service';
   styleUrls: ['./weather.component.scss']
 })
 export class WeatherComponent implements OnInit {
-  date: any;
-  currentWeather: any;
+  date: number;
+  data: any;
+  currentDate: any;
+  year;
+  todayDate;
+  month;
 
-  constructor(public app: AppComponent,
-    public http: HttpServiceService) { }
 
-  ngOnInit(): void {
+  constructor(public http: HttpServiceService) { }
 
-    let loadedInfo = this.app.Currentweather;
-    console.log('from Weathercomopnet', loadedInfo);
-    const unixTime = 1210981217;
-    const date = new Date(unixTime * 1000);
+  async ngOnInit(): Promise<void> {
+    this.http
+      .getPosts()
+      .subscribe((body) => {
+        this.data = body;
+        this.date = this.data['dt'];
+        this.timeToDate();
+        console.log('This is data', this.data);
+        
+      })
+
+
+   /*  this.data = await firstValueFrom(this.http.getPosts());
+    this.date = this.data['dt'];
+    this.timeToDate(); */
+  };
+
+  timeToDate() {
+    const unixTime = this.date;
+    let date = new Date(unixTime * 1000);
+    let today = date.toLocaleDateString("de-de")
+    this.todayDate = today.split('.')[0];
+    this.month = date.toLocaleString("de-DE", {month: 'short'});
+    this.year =  today.split('.')[2];
+  
     console.log(date.toLocaleDateString("de-DE"));
+   
 
   }
-
 }

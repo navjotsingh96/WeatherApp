@@ -1,5 +1,5 @@
 
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output, SimpleChange } from '@angular/core';
 import { Observable } from 'rxjs';
 import { data } from './bodyData';
 import { HttpServiceService } from './http-service.service';
@@ -12,21 +12,12 @@ import { WeatherComponent } from './weather/weather.component';
 })
 export class AppComponent {
   title = 'Weather-App';
-  Currentweather =[];
-
-
+ 
   constructor(private httpService: HttpServiceService) { }
 
 
-  ngOnInit() {
-    this.httpService
-      .getPosts()
-      .subscribe((body) => {
-        this.Currentweather.push(body) ;
-        console.log(body);
-        console.log(this.Currentweather);
+  ngOnChanges(changes: SimpleChange) {
+    console.log('HIer are changes', changes);
 
-      })
-    console.log(this.Currentweather);
-  };
+  }
 }
