@@ -57,4 +57,9 @@ button {
         background-color: #514d71;
         color: white;
     }
+    mat-card-content {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
 }

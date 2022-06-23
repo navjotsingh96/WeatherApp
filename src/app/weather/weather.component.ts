@@ -12,13 +12,17 @@ import { HttpServiceService } from '../http-service.service';
 export class WeatherComponent implements OnInit {
   date: number;
   data: any;
+  day: any;
+  nextDay: any = '';
+  dayAfter: any;
+  twoDayAfter: any;
   nextDayData;
   currentDate: any;
   year;
   todayDate;
   month;
-  nextDay;
 
+  days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
   @Input() lat = '';
   @Input() lon = '';
 
@@ -34,11 +38,11 @@ export class WeatherComponent implements OnInit {
         this.lon = this.data.coord['lon'];
         this.timeToDate();
         this.http.getWeatherFromCoardinate(this.lat, this.lon)
-        .subscribe((coord)=>{
-          this.nextDayData =coord;
-          console.log('this is new', this.nextDayData);
-          
-        })
+          .subscribe((coord) => {
+            this.nextDayData = coord;
+            console.log('this is new', this.nextDayData);
+
+          })
       })
 
 
@@ -46,15 +50,30 @@ export class WeatherComponent implements OnInit {
      this.date = this.data['dt'];
      this.timeToDate(); */
   };
- 
+
   timeToDate() {
     const unixTime = this.date;
     let date = new Date(unixTime * 1000);
     let today = date.toLocaleDateString("de-de")
+    this.day = this.days[date.getDay()];
+
     this.todayDate = today.split('.')[0];
     this.month = date.toLocaleString("de-DE", { month: 'short' });
     this.year = today.split('.')[2];
+    this.nextDay = this.days[date.getDay() + 1];
+    this.dayAfter = this.days[date.getDay() + 2];
+    if(this.dayAfter === "Saturday"){
+      this.twoDayAfter = this.days[0];
+      console.log('alert');
+      
+    } else{
+    this.nextDay = this.days[date.getDay() + 1];
 
+    }
+
+    console.log(this.twoDayAfter);
+    let tryit = new Date(unixTime * 1000).getDay();
+ 
     console.log(date.toLocaleDateString("de-DE"));
 
 

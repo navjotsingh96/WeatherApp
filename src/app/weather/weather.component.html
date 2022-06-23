@@ -41,7 +41,7 @@
             </span>
 
                 </div>
-                <span class="mt-16 mb-16 font-s-16">
+                <span class="mt-16 mb-16 font-s-16"> {{ day }}
             {{todayDate }} {{month }} {{year}}
              </span>
 
@@ -61,10 +61,67 @@
         </mat-card>
 
     </div>
+
     <div class="card-row">
-        <mat-card class="tom-weather-details">{{nextDayData?.daily[0].temp.day}}</mat-card>
-        <mat-card class="tom-weather-details">{{nextDayData?.daily[1].temp.day}}</mat-card>
-        <mat-card class="tom-weather-details">{{nextDayData?.daily[2].temp.day}}</mat-card>
+        <mat-card class="tom-weather-details">
+            <mat-card-content>
+                <span class="mt-16 mb-16 font-s-16"> {{ nextDay }} </span>
+                <img src="http://openweathermap.org/img/wn/{{nextDayData?.daily[0].weather[0].icon || 'image'}}.png" alt="">
+
+                <span class="mt-16 mb-16 font-s-16">
+                {{nextDayData?.daily[0].temp.day}} &#8451;
+            </span>
+                <span class="mt-16 mb-16 font-s-16">
+                    {{nextDayData?.daily[0].weather[0].main}}
+                </span>
+                <span class="mt-16 mb-16 font-s-16">
+                    <b class="m-right-6">Humidity:</b> {{nextDayData?.daily[0].humidity}} %
+                </span>
+            </mat-card-content>
+        </mat-card>
+        <mat-card class="tom-weather-details">
+            <mat-card-content>
+                <span class="mt-16 mb-16 font-s-16"> {{dayAfter}} </span>
+
+                <img src="http://openweathermap.org/img/wn/{{nextDayData?.daily[1].weather[0].icon || 'image'}}.png" alt="">
+
+                <span class="mt-16 mb-16 font-s-16">
+                {{nextDayData?.daily[1].temp.day}} &#8451;
+            </span>
+                <span class="mt-16 mb-16 font-s-16">
+                    {{nextDayData?.daily[1].weather[0].main}}
+                </span>
+                <span class="mt-16 mb-16 font-s-16">
+                    <b class="m-right-6">Humidity:</b> {{nextDayData?.daily[1].humidity}} %
+                </span>
+            </mat-card-content>
+        </mat-card>
+
+
+        <!-- {{nextDayData?.daily[1].temp.day}} -->
+
+        <mat-card class="tom-weather-details">
+
+            <mat-card-content>
+                <span class="mt-16 mb-16 font-s-16"> {{twoDayAfter}} </span>
+
+                <img src="http://openweathermap.org/img/wn/{{nextDayData?.daily[2].weather[0].icon || 'image'}}.png" alt="">
+
+                <span class="mt-16 mb-16 font-s-16">
+                {{nextDayData?.daily[2].temp.day}} &#8451;
+            </span>
+                <span class="mt-16 mb-16 font-s-16">
+                    {{nextDayData?.daily[2].weather[0].main}}
+                </span>
+                <span class="mt-16 mb-16 font-s-16">
+                    <b class="m-right-6">Humidity:</b> {{nextDayData?.daily[2].humidity}} %
+                </span>
+            </mat-card-content>
+
+        </mat-card>
+
+
+
     </div>
 
 </div>
