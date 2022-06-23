@@ -21,9 +21,11 @@ export class HttpServiceService implements OnChanges {
   getPosts() {
     return this.http.get<Body>(this.url, { observe: 'body' });
   }
+  getWeatherFromCoardinate(lat, lon) {
+    let url = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&units=metric&appid=73892cf023bdc9c2cffd21b4ed49c95a&units=metric';
+   return this.http.get(url);
+  }
   onSubmit() {
-    let cal = Math.floor(new Date().getTime() / 1000.0)
-    console.log('HIer ist', cal);
     console.log(this.city);
 
 

@@ -3,6 +3,7 @@
 html,
 body {
     height: 100%;
+    background-color: #333255eb;
 }
 
 body {
@@ -22,6 +23,10 @@ body {
         justify-content: center;
         flex-direction: row;
     }
+}
+
+.d-flex {
+    display: flex;
 }
 
 .flex-ju-al-cen {
@@ -44,6 +49,14 @@ body {
 
 .ml-16 {
     margin-left: 16px !important;
+}
+
+.m-right-6 {
+    margin-right: 6px !important;
+}
+
+.m-r20 {
+    margin-right: 20px !important;
 }
 
 .font-s-30 {

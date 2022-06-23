@@ -2,13 +2,13 @@
     padding-top: 20px;
     padding-right: 20px;
     padding-left: 20px;
-    width: 100vw;
+    width: 60vw;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     form {
-        width: 80%;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -20,17 +20,41 @@
     }
 }
 
+.serach-container {
+    width: 100%;
+}
+
 button {
     width: auto;
     margin-bottom: 20px;
 }
 
-mat-card {
+.details-contianer {
+    width: 100%;
+}
+
+.main-mat-card {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 80%;
+    background-color: #514d71;
+    color: white;
+    height: 500px;
+    border-radius: 10px;
 }
 
-.weather-container {}
+.card-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    .tom-weather-details {
+        height: 250px;
+        width: 28%;
+        margin-top: 32px;
+        display: flex;
+        justify-content: center;
+        background-color: #514d71;
+        color: white;
+    }
+}
