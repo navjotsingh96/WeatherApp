@@ -22,7 +22,7 @@ export class WeatherComponent implements OnInit {
   todayDate;
   month;
 
-  days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+  days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   @Input() lat = '';
   @Input() lon = '';
 
@@ -57,23 +57,34 @@ export class WeatherComponent implements OnInit {
     let today = date.toLocaleDateString("de-de")
     this.day = this.days[date.getDay()];
 
+    let pos = this.days.indexOf(this.day);
+    this.nextDay = this.days[(pos + 1) % this.days.length];
+    this.dayAfter = this.days[(pos + 2) % this.days.length];
+    this.twoDayAfter = this.days[(pos + 3) % this.days.length];
+
     this.todayDate = today.split('.')[0];
     this.month = date.toLocaleString("de-DE", { month: 'short' });
     this.year = today.split('.')[2];
-    this.nextDay = this.days[date.getDay() + 1];
-    this.dayAfter = this.days[date.getDay() + 2];
-    if(this.dayAfter === "Saturday"){
+
+   /*  if (this.dayAfter === "Saturday") {
       this.twoDayAfter = this.days[0];
       console.log('alert');
-      
-    } else{
-    this.nextDay = this.days[date.getDay() + 1];
 
     }
+    else if (this.nextDay == "Saturday") {
+      this.dayAfter = this.days[0];
+
+    }
+    else { */
+     /*  this.nextDay = this.days[date.getDay() + 1];
+      this.dayAfter = this.days[date.getDay() + 2];
+      this.twoDayAfter = this.days[date.getDay() + 3]; */
+
+    
 
     console.log(this.twoDayAfter);
     let tryit = new Date(unixTime * 1000).getDay();
- 
+
     console.log(date.toLocaleDateString("de-DE"));
 
 

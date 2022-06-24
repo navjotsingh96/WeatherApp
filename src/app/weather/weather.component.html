@@ -1,9 +1,9 @@
 <div class="weather-container">
     <div class="serach-container">
         <form (submit)="http.onSubmit()">
-            <mat-form-field class="example-full-width" appearance="fill">
+            <mat-form-field appearance="fill">
                 <mat-label>Search City</mat-label>
-                <input matInput placeholder="Search City" class="inputCIty" type="text" [(ngModel)]="http.searchCity" name="searchCity">
+                <input matInput class="inputCIty" type="text" [(ngModel)]="http.searchCity" name="searchCity">
             </mat-form-field>
 
             <button (click)="http.try()" mat-raised-button color="primary">
