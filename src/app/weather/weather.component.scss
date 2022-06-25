@@ -31,6 +31,10 @@
     }
 }
 
+mat-input {
+    text-transform: capitalize !important;
+}
+
 ::ng-deep {
     .mat-form-field .mat-form-field-flex {
         background-color: #514d71 !important;
@@ -75,6 +79,7 @@ button {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    flex-wrap: wrap;
     .tom-weather-details {
         height: 250px;
         width: 28%;
@@ -122,6 +127,22 @@ button {
             height: 50px !important;
             width: 50px !important;
         }
+    }
+}
+
+@media (max-width: 780px) {
+    .weather-container {
+        width: 85vw;
+    }
+    .card-row {
+        justify-content: center;
+        align-items: center;
+        .tom-weather-details {
+            width: 90%;
+        }
+    }
+    .spinner {
+        padding-bottom: 300px;
     }
 }
 

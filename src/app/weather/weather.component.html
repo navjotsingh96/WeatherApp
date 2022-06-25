@@ -3,10 +3,10 @@
         <form>
             <mat-form-field appearance="fill">
                 <mat-label>Search City</mat-label>
-                <input matInput class="inputCIty" type="text" [(ngModel)]="http.city" name="searchCity">
+                <input style="text-transform: capitalize;" matInput class="inputCIty" type="text" [(ngModel)]="http.city" name="searchCity">
             </mat-form-field>
 
-            <button (click)="loadWeather()" mat-raised-button color="primary">
+            <button (keyup.enter)="loadWeather()" (click)="loadWeather()" mat-raised-button color="primary">
             <mat-icon>search</mat-icon>
             Search
           </button>
@@ -22,44 +22,45 @@
             <mat-card-header class="mr-16">
 
 
-                <mat-card-title class="mr-16 font-s-30 mt-16">{{data?.name || 'Name of City'}}, {{data?.sys.country|| 'Name of Land'}}</mat-card-title>
+                <mat-card-title class="mr-16 font-s-30 mt-16">{{data?.name || 'Name of City'}}
+                    <span class="mr-16 font-s-30 mt-16">{{data?.sys.country|| 'Name of Land'}}</span> </mat-card-title>
             </mat-card-header>
-            <mat-card-content class="flex-ju-al-cen flex-d-col mr-16">
-                <span class="font-s-26 mt-16 mb-16" style="margin-top: 38px !important;">
-                {{data?.main.temp || "Temp."}} &#8451; 
+            <mat-card-content class="flex-ju-al-cen flex-d-col mr-16 ">
+                <span class="font-s-26 mt-16 mb-16 " style="margin-top: 38px !important; ">
+                {{data?.main.temp || "Temp. "}} &#8451; 
             </span>
 
-                <div class="mb-16">
-                    <span class="font-s-16">
-                <b class="m-right-6">Max:</b> {{data?.main.temp_max}} &#8451;
+                <div class="mb-16 ">
+                    <span class="font-s-16 ">
+                <b class="m-right-6 ">Max:</b> {{data?.main.temp_max}} &#8451;
              </span>
-                    <span class="font-s-16">
-                 <b class="m-right-6">Min:</b> {{data?.main.temp_min}} &#8451;
+                    <span class="font-s-16 ">
+                 <b class="m-right-6 ">Min:</b> {{data?.main.temp_min}} &#8451;
               </span>
 
                 </div>
-                <div class="flex-ju-al-cen flex-d-col">
-                    <!-- <span class="font-s-16 mt-16 mb-16">{{data?.weather[0].description}}</span> -->
-                    <img src="http://openweathermap.org/img/wn/{{data?.weather[0].icon || 'image'}}.png" alt="">
-                    <span class="font-s-16 mt-16 mb-16">
+                <div class="flex-ju-al-cen flex-d-col ">
+                    <!-- <span class="font-s-16 mt-16 mb-16 ">{{data?.weather[0].description}}</span> -->
+                    <img src="http://openweathermap.org/img/wn/{{data?.weather[0].icon || 'image'}}.png " alt=" ">
+                    <span class="font-s-16 mt-16 mb-16 ">
                 {{data?.weather[0].main}}
             </span>
 
                 </div>
-                <span class="mt-16 mb-16 font-s-16"> {{ day }}
+                <span class="mt-16 mb-16 font-s-16 "> {{ day }}
             {{todayDate }} {{month }} {{year}}
              </span>
 
-                <div class="w-100 d-flex">
-                    <span class="mt-16 mb-16 font-s-16 m-r20">
-                     <b class="m-right-6">Humidity: </b> {{data?.main.humidity || "humidity"}}%
+                <div class="w-100 d-flex ">
+                    <span class="mt-16 mb-16 font-s-16 m-r20 ">
+                     <b class="m-right-6 ">Humidity: </b> {{data?.main.humidity || "humidity "}}%
                 </span>
-                    <span class="mt-16 mb-16 font-s-16 m-r20">
-                     <b class="m-right-6">Wind speed: </b> {{data?.wind.speed || "humidity"}}km/h
+                    <span class="mt-16 mb-16 font-s-16 m-r20 ">
+                     <b class="m-right-6 ">Wind speed: </b> {{data?.wind.speed || "humidity "}}km/h
                 </span>
 
-                    <span class="mt-16 mb-16 font-s-16">
-                    <b class="m-right-6">Pressure:</b> {{data?.main.pressure}} hPa
+                    <span class="mt-16 mb-16 font-s-16 ">
+                    <b class="m-right-6 ">Pressure:</b> {{data?.main.pressure}} hPa
                 </span>
                 </div>
             </mat-card-content>
@@ -67,44 +68,44 @@
 
     </div>
 
-    <div class="card-row">
+    <div class="card-row ">
 
-        <mat-card class="tom-weather-details">
-            <div class="spinner">
-                <mat-spinner *ngIf="loading" [diameter]="50"></mat-spinner>
+        <mat-card class="tom-weather-details ">
+            <div class="spinner ">
+                <mat-spinner *ngIf="loading " [diameter]="50 "></mat-spinner>
             </div>
             <mat-card-content>
-                <span class="mt-16 mb-16 font-s-16"> {{ nextDay }} </span>
-                <img src="http://openweathermap.org/img/wn/{{nextDayData?.daily[0].weather[0].icon || 'image'}}.png" alt="">
+                <span class="mt-16 mb-16 font-s-16 "> {{ nextDay }} </span>
+                <img src="http://openweathermap.org/img/wn/{{nextDayData?.daily[0].weather[0].icon || 'image'}}.png " alt=" ">
 
-                <span class="mt-16 mb-16 font-s-16">
+                <span class="mt-16 mb-16 font-s-16 ">
                 {{nextDayData?.daily[0].temp.day}} &#8451;
             </span>
-                <span class="mt-16 mb-16 font-s-16">
+                <span class="mt-16 mb-16 font-s-16 ">
                     {{nextDayData?.daily[0].weather[0].main}}
                 </span>
-                <span class="mt-16 mb-16 font-s-16">
-                    <b class="m-right-6">Humidity:</b> {{nextDayData?.daily[0].humidity}} %
+                <span class="mt-16 mb-16 font-s-16 ">
+                    <b class="m-right-6 ">Humidity:</b> {{nextDayData?.daily[0].humidity}} %
                 </span>
             </mat-card-content>
         </mat-card>
-        <mat-card class="tom-weather-details">
-            <div class="spinner">
-                <mat-spinner *ngIf="loading" [diameter]="50"></mat-spinner>
+        <mat-card class="tom-weather-details ">
+            <div class="spinner ">
+                <mat-spinner *ngIf="loading " [diameter]="50 "></mat-spinner>
             </div>
             <mat-card-content>
-                <span class="mt-16 mb-16 font-s-16"> {{dayAfter}} </span>
+                <span class="mt-16 mb-16 font-s-16 "> {{dayAfter}} </span>
 
-                <img src="http://openweathermap.org/img/wn/{{nextDayData?.daily[1].weather[0].icon || 'image'}}.png" alt="">
+                <img src="http://openweathermap.org/img/wn/{{nextDayData?.daily[1].weather[0].icon || 'image'}}.png " alt=" ">
 
-                <span class="mt-16 mb-16 font-s-16">
+                <span class="mt-16 mb-16 font-s-16 ">
                 {{nextDayData?.daily[1].temp.day}} &#8451;
             </span>
-                <span class="mt-16 mb-16 font-s-16">
+                <span class="mt-16 mb-16 font-s-16 ">
                     {{nextDayData?.daily[1].weather[0].main}}
                 </span>
-                <span class="mt-16 mb-16 font-s-16">
-                    <b class="m-right-6">Humidity:</b> {{nextDayData?.daily[1].humidity}} %
+                <span class="mt-16 mb-16 font-s-16 ">
+                    <b class="m-right-6 ">Humidity:</b> {{nextDayData?.daily[1].humidity}} %
                 </span>
             </mat-card-content>
         </mat-card>
@@ -112,23 +113,23 @@
 
         <!-- {{nextDayData?.daily[1].temp.day}} -->
 
-        <mat-card class="tom-weather-details">
-            <div class="spinner">
-                <mat-spinner *ngIf="loading" [diameter]="50"></mat-spinner>
+        <mat-card class="tom-weather-details ">
+            <div class="spinner ">
+                <mat-spinner *ngIf="loading " [diameter]="50 "></mat-spinner>
             </div>
             <mat-card-content>
-                <span class="mt-16 mb-16 font-s-16"> {{twoDayAfter}} </span>
+                <span class="mt-16 mb-16 font-s-16 "> {{twoDayAfter}} </span>
 
-                <img src="http://openweathermap.org/img/wn/{{nextDayData?.daily[2].weather[0].icon || 'image'}}.png" alt="">
+                <img src="http://openweathermap.org/img/wn/{{nextDayData?.daily[2].weather[0].icon || 'image'}}.png " alt=" ">
 
-                <span class="mt-16 mb-16 font-s-16">
+                <span class="mt-16 mb-16 font-s-16 ">
                 {{nextDayData?.daily[2].temp.day}} &#8451;
             </span>
-                <span class="mt-16 mb-16 font-s-16">
+                <span class="mt-16 mb-16 font-s-16 ">
                     {{nextDayData?.daily[2].weather[0].main}}
                 </span>
-                <span class="mt-16 mb-16 font-s-16">
-                    <b class="m-right-6">Humidity:</b> {{nextDayData?.daily[2].humidity}} %
+                <span class="mt-16 mb-16 font-s-16 ">
+                    <b class="m-right-6 ">Humidity:</b> {{nextDayData?.daily[2].humidity}} %
                 </span>
             </mat-card-content>
 
