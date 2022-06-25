@@ -57,6 +57,7 @@ button {
 
 .details-contianer {
     width: 100%;
+    position: relative;
 }
 
 .main-mat-card {
@@ -94,6 +95,34 @@ button {
 .mat-form-field-label.mat-focused,
 .mat-form-field.mat-focused.matform-field-should-float {
     color: #fafafa;
+}
+
+.spinner {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+    stroke: #343355;
+}
+
+.tom-weather-details {
+    mat-spinner {
+        height: 50px !important;
+        width: 50px !important;
+        svg {
+            height: 50px !important;
+            width: 50px !important;
+        }
+    }
 }
 
 

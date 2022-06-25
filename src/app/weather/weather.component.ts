@@ -1,7 +1,9 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { firstValueFrom } from 'rxjs';
 
 import { HttpServiceService } from '../http-service.service';
+import { ShowErrorsComponent } from '../show-errors/show-errors.component';
 
 
 @Component({
@@ -22,18 +24,25 @@ export class WeatherComponent implements OnInit, OnChanges {
   todayDate;
   month;
 
-
+  loading = false;
+  @Input() error;
   daysofWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   @Input() lat = '';
   @Input() lon = '';
 
-  constructor(public http: HttpServiceService) { }
-ngOnChanges(changes: SimpleChanges): void {
-  if(this.http.searchCity.changes)
-  console.log(changes);
-  
-}
+  constructor(public http: HttpServiceService,
+    private dialog: MatDialog) { }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.http.searchCity.changes)
+      console.log(changes);
+
+  }
   async ngOnInit(): Promise<void> {
+    this.loadWeather();
+  }
+
+  loadWeather() {
+    this.loading = true;
     this.http
       .getPosts()
       .subscribe((body) => {
@@ -46,12 +55,17 @@ ngOnChanges(changes: SimpleChanges): void {
           .subscribe((coord) => {
             this.nextDayData = coord;
             console.log('this is new', this.nextDayData);
-
+            this.loading = false; 
           })
-      })
+      }, (error => {
+        console.log(error);
+        this.error = error.error.message;
+        this.openDialog();
+        this.loading =false;
 
-  };
+      }))
 
+  }
   timeToDate() {
     const unixTime = this.date;
     let date = new Date(unixTime * 1000);
@@ -69,5 +83,11 @@ ngOnChanges(changes: SimpleChanges): void {
 
 
   }
+  onNoClick() {
 
+  }
+  openDialog() {
+    const dialogRef = this.dialog.open(ShowErrorsComponent);
+    dialogRef.componentInstance.error = this.error;
+  }
 }

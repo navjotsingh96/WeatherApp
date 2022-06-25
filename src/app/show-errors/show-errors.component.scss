@@ -1,0 +1,21 @@
+.show-err-comp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1::first-letter {
+    text-transform: capitalize;
+}
+
+::ng-deep mat-dialog-container {
+    transform: none !important;
+    height: 200px !important;
+    width: 400px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: #514d71 !important;
+    color: white !important;
+}
