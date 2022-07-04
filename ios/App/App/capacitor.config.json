@@ -1,0 +1,6 @@
+{
+	"appId": "de.weather.app",
+	"appName": "weather-app",
+	"webDir": "dist/weather-app",
+	"bundledWebRuntime": false
+}

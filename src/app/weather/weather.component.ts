@@ -1,3 +1,4 @@
+import { jitOnlyGuardedExpression } from '@angular/compiler/src/render3/util';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { firstValueFrom } from 'rxjs';
@@ -24,7 +25,13 @@ export class WeatherComponent implements OnInit, OnChanges {
   todayDate;
   month;
 
+
+  saveCity;
   loading = false;
+
+  futureDates = [];
+
+  futureTime:any=[];
   @Input() error;
   daysofWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   @Input() lat = '';
@@ -39,8 +46,9 @@ export class WeatherComponent implements OnInit, OnChanges {
   }
   async ngOnInit(): Promise<void> {
     this.loadWeather();
-  }
 
+
+  }
   loadWeather() {
     this.loading = true;
     this.http
@@ -50,18 +58,22 @@ export class WeatherComponent implements OnInit, OnChanges {
         this.date = this.data['dt'];
         this.lat = this.data.coord['lat'];
         this.lon = this.data.coord['lon'];
+        console.log(this.data);
+
         this.timeToDate();
         this.http.getWeatherFromCoardinate(this.lat, this.lon)
           .subscribe((coord) => {
             this.nextDayData = coord;
-            console.log('this is new', this.nextDayData);
-            this.loading = false; 
+            console.log('this is new', this.nextDayData.hourly);
+            this.loading = false;
+            this.futureDates = this.nextDayData.hourly;
+            this.timeToDateforFuture();
           })
       }, (error => {
         console.log(error);
         this.error = error.error.message;
         this.openDialog();
-        this.loading =false;
+        this.loading = false;
 
       }))
 
@@ -81,6 +93,10 @@ export class WeatherComponent implements OnInit, OnChanges {
     this.dayAfter = this.daysofWeek[(pos + 2) % this.daysofWeek.length];
     this.twoDayAfter = this.daysofWeek[(pos + 3) % this.daysofWeek.length];
 
+  }
+
+  timeToDateforHourly(hours: any) {
+    console.log('this is hours', hours);
 
   }
   onNoClick() {
@@ -90,4 +106,34 @@ export class WeatherComponent implements OnInit, OnChanges {
     const dialogRef = this.dialog.open(ShowErrorsComponent);
     dialogRef.componentInstance.error = this.error;
   }
+
+  saveCityinLocal() {
+    let saveData = this.saveCity;
+    localStorage.setItem('city', JSON.stringify(saveData));
+    console.log(saveData);
+
+  }
+  timeToDateforFuture() {
+    for (let i = 0; i < this.futureDates.length; i++) {
+      const future = this.futureDates[i];
+     let number = future.dt
+      const unixTime = number;
+      let date = new Date(unixTime * 1000);
+      let today = date.getHours();
+
+   this.futureTime.push(today);
+ 
+      console.log('future', this.futureTime);
+ 
+
+      
+    }
+/*     this.futureDates.forEach(future => {
+   
+
+    });
+ */
+  }
 }
+
+

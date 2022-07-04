@@ -71,7 +71,7 @@ button {
     flex-direction: column;
     background-color: #514d71;
     color: white;
-    height: 500px;
+    height: auto;
     border-radius: 10px;
 }
 
@@ -104,7 +104,6 @@ button {
 
 .spinner {
     position: absolute;
-    z-index: 1;
     left: 0;
     right: 0;
     bottom: 0;
@@ -130,8 +129,59 @@ button {
     }
 }
 
+.hourly {
+    display: flex;
+    width: 100%;
+    overflow: scroll;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    div {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+.main-hourly {
+    background: #514d71;
+    height: auto;
+    width: 60vw;
+    position: relative;
+    padding-bottom: 5px;
+    border-radius: 30px 30px 10px 10px;
+    box-shadow: 0 0px 7px 10px #343355;
+    bottom: -14px;
+}
+
+.hours-weather {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    padding: 20px 20px 20px 20px;
+    overflow-x: scroll;
+    div {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+.hourly-weather {
+    position: relative;
+    width: 100%;
+    top: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: center;
+    img {
+        background-color: #00000036;
+        border-radius: 100%;
+    }
+}
+
 @media (max-width: 780px) {
-    .weather-container {
+    .weather-container,
+    .main-hourly {
         width: 85vw;
     }
     .card-row {

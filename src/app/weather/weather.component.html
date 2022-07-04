@@ -12,6 +12,7 @@
           </button>
 
         </form>
+
     </div>
 
     <div class="details-contianer">
@@ -22,7 +23,7 @@
             <mat-card-header class="mr-16">
 
 
-                <mat-card-title class="mr-16 font-s-30 mt-16">{{data?.name || 'Name of City'}}
+                <mat-card-title style="padding-top: 27px;" class="mr-16 font-s-30 mt-16">{{data?.name || 'Name of City'}}
                     <span class="mr-16 font-s-30 mt-16">{{data?.sys.country|| 'Name of Land'}}</span> </mat-card-title>
             </mat-card-header>
             <mat-card-content class="flex-ju-al-cen flex-d-col mr-16 ">
@@ -62,6 +63,16 @@
                     <span class="mt-16 mb-16 font-s-16 ">
                     <b class="m-right-6 ">Pressure:</b> {{data?.main.pressure}} hPa
                 </span>
+                </div>
+                <div class="main-hourly">
+                    <div class="hours-weather">
+
+                        <div class="hourly-weather" *ngFor="let hourly of futureDates; let i = index; let time of futureTime">
+                            {{futureTime[i]}}:00 <br> {{hourly.temp}}°C
+                            <img src="http://openweathermap.org/img/wn/{{hourly?.weather[0].icon || 'image'}}.png " alt=" "> {{hourly.weather[0].main}} <br> {{hourly.humidity}} %
+
+                        </div>
+                    </div>
                 </div>
             </mat-card-content>
         </mat-card>
@@ -134,6 +145,8 @@
             </mat-card-content>
 
         </mat-card>
+
+
 
 
 
