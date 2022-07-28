@@ -2,6 +2,7 @@
     padding-top: 20px;
     padding-right: 20px;
     padding-left: 20px;
+    padding-bottom: 20px;
     width: 60vw;
     display: flex;
     align-items: center;
@@ -158,12 +159,48 @@ button {
     align-items: center;
     justify-content: flex-start;
     position: relative;
-    padding: 20px 20px 20px 20px;
+    padding: 20px 20px 20px 30px;
     overflow-x: scroll;
     div {
         margin-left: 20px;
         margin-right: 20px;
     }
+}
+
+.arrow {
+    position: absolute;
+    top: 58px;
+    height: 55px;
+    width: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #343355;
+}
+
+.a-left {
+    left: -18px;
+}
+
+.a-right {
+    right: -18px;
+}
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+
+.hours-weather::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Hide scrollbar for IE, Edge and Firefox */
+
+.hours-weather {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 .hourly-weather {

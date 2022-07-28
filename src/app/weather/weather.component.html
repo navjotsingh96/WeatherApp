@@ -65,13 +65,27 @@
                 </span>
                 </div>
                 <div class="main-hourly">
-                    <div class="hours-weather">
+                    <div #scroll class="hours-weather">
 
                         <div class="hourly-weather" *ngFor="let hourly of futureDates; let i = index; let time of futureTime">
                             {{futureTime[i]}}:00 <br> {{hourly.temp}}°C
                             <img src="http://openweathermap.org/img/wn/{{hourly?.weather[0].icon || 'image'}}.png " alt=" "> {{hourly.weather[0].main}} <br> {{hourly.humidity}} %
 
                         </div>
+
+
+                    </div>
+                    <div class="arrow-icon">
+                        <button (click)="scrollRight()" mat-fab color="primary" class="arrow a-right">
+                            <mat-icon>keyboard_arrow_right</mat-icon>
+
+                          </button>
+                    </div>
+                    <div class="arrow-icon">
+                        <button (click)="scrollLeft()" mat-fab color="primary" class="arrow a-left">
+                            <mat-icon class="icon-size">keyboard_arrow_left</mat-icon>
+
+                          </button>
                     </div>
                 </div>
             </mat-card-content>

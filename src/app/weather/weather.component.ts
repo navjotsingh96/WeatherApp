@@ -1,5 +1,5 @@
 import { jitOnlyGuardedExpression } from '@angular/compiler/src/render3/util';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { firstValueFrom } from 'rxjs';
 
@@ -24,6 +24,9 @@ export class WeatherComponent implements OnInit, OnChanges {
   year;
   todayDate;
   month;
+  @ViewChild('scroll', { read: ElementRef }) public scroll: ElementRef<any>;
+
+ 
 
 
   saveCity;
@@ -31,7 +34,7 @@ export class WeatherComponent implements OnInit, OnChanges {
 
   futureDates = [];
 
-  futureTime:any=[];
+  futureTime: any = [];
   @Input() error;
   daysofWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   @Input() lat = '';
@@ -58,13 +61,10 @@ export class WeatherComponent implements OnInit, OnChanges {
         this.date = this.data['dt'];
         this.lat = this.data.coord['lat'];
         this.lon = this.data.coord['lon'];
-        console.log(this.data);
-
         this.timeToDate();
         this.http.getWeatherFromCoardinate(this.lat, this.lon)
           .subscribe((coord) => {
             this.nextDayData = coord;
-            console.log('this is new', this.nextDayData.hourly);
             this.loading = false;
             this.futureDates = this.nextDayData.hourly;
             this.timeToDateforFuture();
@@ -110,29 +110,25 @@ export class WeatherComponent implements OnInit, OnChanges {
   saveCityinLocal() {
     let saveData = this.saveCity;
     localStorage.setItem('city', JSON.stringify(saveData));
-    console.log(saveData);
+
 
   }
   timeToDateforFuture() {
     for (let i = 0; i < this.futureDates.length; i++) {
       const future = this.futureDates[i];
-     let number = future.dt
+      let number = future.dt
       const unixTime = number;
       let date = new Date(unixTime * 1000);
       let today = date.getHours();
-
-   this.futureTime.push(today);
- 
-      console.log('future', this.futureTime);
- 
-
-      
+      this.futureTime.push(today);
     }
-/*     this.futureDates.forEach(future => {
-   
+  }
+  public scrollRight(): void {
+    this.scroll.nativeElement.scrollTo({ left: (this.scroll.nativeElement.scrollLeft + 250), behavior: 'smooth' });
+  }
 
-    });
- */
+  public scrollLeft(): void {
+    this.scroll.nativeElement.scrollTo({ left: (this.scroll.nativeElement.scrollLeft - 250), behavior: 'smooth' });
   }
 }
 
